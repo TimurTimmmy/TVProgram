@@ -56,7 +56,7 @@ namespace TVProgram
         public void LoadChannels()
         {
             List<Channel> TvChnl = new List<Channel>();
-            XDocument xdoc = XDocument.Load("F:\\vs\\WpfApp1\\WpfApp1\\tv.xml");
+            XDocument xdoc = XDocument.Load(directory + "xmltv.xml");
             var items = from xChnl in xdoc.Element("tv").Elements("channel")
                         select new Channel(xChnl.Attribute("id").Value, xChnl.Element("display-name").Value);
             foreach (var it in items) TvChnl.Add(it);
@@ -66,7 +66,7 @@ namespace TVProgram
         public void UpdateGrid()
         {
             List<TvProgramm> TV = new List<TvProgramm>();
-            XDocument xdoc = XDocument.Load("F:\\vs\\WpfApp1\\WpfApp1\\tv.xml");
+            XDocument xdoc = XDocument.Load(directory + "xmltv.xml");
             var items = from xProg in xdoc.Element("tv").Elements("programme")
                         where xProg.Attribute("channel").Value == IdChannel
                         select new TvProgramm(StrToDate((xProg.Attribute("start").Value), VarTimeZone), xProg.Element("title").Value);
@@ -84,10 +84,12 @@ namespace TVProgram
 
         public void DownLoad()
         {
-            WebClient wc = new WebClient();
-            string url = "http://programtv.ru/xmltv.xml.gz";
-            //           string save_path = "F:\\vs\\WpfApp1\\WpfApp1";
-            wc.DownloadFile(url, directory);
+            DirectoryInfo directorySelected = new DirectoryInfo(directory);
+            foreach (FileInfo fileToDel in directorySelected.GetFiles("*.xml"))
+            fileToDel.Delete();
+            WebClient WebCln = new WebClient();
+            string URL = "http://programtv.ru/xmltv.xml.gz";
+            WebCln.DownloadFile(URL, directory + "xmltv.xml.gz");
         }
 
         public void UnPack()
@@ -95,7 +97,6 @@ namespace TVProgram
             DirectoryInfo directorySelected = new DirectoryInfo(directory);
             foreach (FileInfo fileToDecompress in directorySelected.GetFiles("*.gz"))
             {
-
                 using (FileStream originalFileStream = fileToDecompress.OpenRead())
                 {
                     string currentFileName = fileToDecompress.FullName;
