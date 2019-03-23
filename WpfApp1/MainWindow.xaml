@@ -5,26 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TVProgram"
         mc:Ignorable="d"
-        Title="TVProgram" Height="350" Width="525">
+        Title="TVProgram" Height="400" Width="545" ResizeMode="CanMinimize">
     <Grid x:Name="grid1" Height="173" VerticalAlignment="Top">
-        <DataGrid x:Name="DG1" Height="250" Width="500" Margin="10,60,10,-138" DataGrid.IsReadOnly="True" 
-                  VerticalAlignment="Top" Loaded="grid_Loaded" RowBackground ="LightCyan" AlternatingRowBackground ="LightBlue" AutoGenerateColumns="False" >
+        <DataGrid x:Name="DG1" Height="300" Margin="11,60,13,-187" IsReadOnly="True" ColumnWidth="*" 
+                  VerticalAlignment="Top" RowBackground ="LightCyan" AlternatingRowBackground ="LightBlue"  AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Время" Binding="{Binding Path=Date}" Width="150" />
-                <DataGridTextColumn Header="Название" Binding="{Binding Path=Program}" Width="340" />
+                <DataGridTextColumn Header="Время" Binding="{Binding Path=Date}" Width="120" />
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Program}" Width="370" />
             </DataGrid.Columns>
         </DataGrid>
-        
+
         <Slider x:Name="Slider1" Value="0" Minimum="0" Maximum="10" SelectionStart="0" IsSelectionRangeEnabled="True" ValueChanged="Slider_ValueChanged" SmallChange="1"
-                Ticks="0,1,2,3,4,5,6,7,8,9,10" TickPlacement="BottomRight" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,30,0,0" Width="215"/>
-        
-        <Label x:Name="TimeLabel" Content="0" HorizontalAlignment="Left" Margin="420,32,0,0" VerticalAlignment="Top"/>
-        
+                Ticks="0,1,2,3,4,5,6,7,8,9,10" TickPlacement="BottomRight" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="225,30,0,0" Width="215"/>
+
+        <Label x:Name="TimeLabel" Content="0" HorizontalAlignment="Left" Margin="442,32,0,0" VerticalAlignment="Top"/>
+
         <ComboBox x:Name="ChannelBox" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" Width="175" SelectionChanged="ComboBox_SelectionChanged"
                   IsEditable="True" DisplayMemberPath="Name">
             <TextBox Text="Id"/>
         </ComboBox>
-        <Button x:Name="DLButton"  Content="Скачать" HorizontalAlignment="Left" Margin="442,31,0,0" VerticalAlignment="Top" Width="65" RenderTransformOrigin="0.067,0.25" Click="DLButton_Click"/>
+        <Button x:Name="DLButton"  Content="Скачать" HorizontalAlignment="Left" Margin="460,31,0,0" VerticalAlignment="Top" Width="65" RenderTransformOrigin="0.067,0.25" Click="DLButton_Click"/>
+        <Image x:Name="ChannelLogo" HorizontalAlignment="Left" Height="23" Margin="192,30,0,0" VerticalAlignment="Top" Width="23"/>
 
     </Grid>
 </Window>

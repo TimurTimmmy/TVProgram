@@ -71,6 +71,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Channel.cs" />
+    <Compile Include="Logo.cs" />
+    <Compile Include="Pack.cs" />
     <Compile Include="TvProgramm.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
